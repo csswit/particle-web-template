@@ -1,8 +1,39 @@
 <div class="container">
   <div class="user-details">
-    <h3> Featured Projects </h3>
+    <h3> {{site.project_section.title}} </h3>
   </div>
-  <div class="row user-projects">
+  {% for project in site.project_section.projects %}
+    {% if project.leftAligned %}
+      <div class="row user-projects">
+        <div class="six columns images">
+          <img alt="{{project.image_name}}" src={{project.featured_image}} />
+        </div>
+        <div class="six columns contents">
+          <h5> {{ project.name }} </h5>
+          <ul>
+            <li> {{ project.featured_skills }}</li>
+          </ul>
+          <p>{{ project.description }}</p>
+          <a class="project-link" href={{project.url}}>Check it out</a>
+        </div>
+      </div>
+    {% else %}
+      <div class="row user-projects">
+        <div class="six columns">
+          <img alt="{{project.image_name}}"  src={{project.featured_image}}  />
+        </div>
+        <div class="six columns">
+          <h5> {{ project.name }} </h5>
+          <ul>
+            <li> {{project.featured_skills}}</li>
+          </ul>
+          <p>{{ project.description }}</p>
+          <a class="project-link" href={{project.url}}>Check it out</a>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+  <!-- <div class="row user-projects">
     <div class="six columns images">
       <img alt="mountains" src="{{ "/assets/img/mountains.jpg" | prepend: site.baseurl }}" />
     </div>
@@ -27,5 +58,5 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <a class="project-link" href="#">Check it out</a>
     </div>
-  </div>
+  </div> -->
 </div>
